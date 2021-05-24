@@ -1,7 +1,8 @@
 import React from 'react';
 import { DollModel } from '../DollModel';
 import './DollCard.css';
-// import { DollModel } from '../DollModel';
+
+// import { useSelector, useDispatch } from 'react-redux';
 
 const VacationCard = (doll: DollModel): JSX.Element => {
   return (
@@ -17,7 +18,15 @@ const VacationCard = (doll: DollModel): JSX.Element => {
           <b>Price: </b>
           {doll.price}
         </p>
-        <input type='checkbox' id='owned' name='owned' />
+        <input
+          onChange={(event) => {
+            // let checked= event.target.checked;
+          }}
+          type='checkbox'
+          id='owned'
+          name='owned'
+          checked={doll.owned}
+        />
       </div>
     </div>
   );

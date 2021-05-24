@@ -1,0 +1,9 @@
+.main-page > * {
+  border: 1px solid black;
+}
+
+.main-page {
+  margin: auto;
+  width: 40%;
+
+}
