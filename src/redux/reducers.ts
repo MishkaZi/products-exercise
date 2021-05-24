@@ -1,6 +1,6 @@
 import { DollsAction } from './actions';
 
-const initialState= {
+const initialState = {
   dolls: [],
 };
 
@@ -9,9 +9,8 @@ const dollsReducer = (state = initialState, action: DollsAction) => {
 
   switch (action.type) {
     case 'GET_ALL_DOLLS':
-      newState.dolls = action.payload;
+      return (newState.dolls = action.payload);
 
-      break;
 
     default:
       return newState;
