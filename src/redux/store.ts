@@ -1,14 +1,15 @@
-import { createStore, combineReducers } from 'redux';
-// import { DollModel } from '../Components/DollModel';
-// import { DollsAction } from './actions';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import dollsReducer from './reducers';
-
-// interface AppState {
-//   dolls: DollModel[];
-// }
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const allReducers = combineReducers({
   MainPage: dollsReducer,
 });
 
-export const store = createStore(allReducers);
+export type RootStore = ReturnType<typeof allReducers>;
+
+export const store = createStore(
+  allReducers,
+  composeWithDevTools(applyMiddleware(thunk))
+);

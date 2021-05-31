@@ -1,19 +1,24 @@
 import { DollsAction } from './actions';
+import { DollModel } from '../Components/DollModel';
 
-const initialState = {
-  dolls: [],
-};
+interface defaultStateI {
+  dolls?: DollModel[];
+}
 
-const dollsReducer = (state = initialState, action: DollsAction) => {
-  const newState = { ...state };
+const initialState: defaultStateI = {};
 
+const dollsReducer = (
+  state: defaultStateI = initialState,
+  action: DollsAction
+): defaultStateI => {
   switch (action.type) {
     case 'GET_ALL_DOLLS':
-      return (newState.dolls = action.payload);
-
+      return {
+        dolls: action.payload,
+      };
 
     default:
-      return newState;
+      return {};
   }
 };
 

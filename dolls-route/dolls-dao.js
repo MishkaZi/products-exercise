@@ -22,7 +22,21 @@ const getAllDolls = async () => {
   }
 };
 
+const updateDoll = async (updatedDoll, id) => {
+  let sql = 'UPDATE dolls SET name=?, price=?, owned=? WHERE dolls.id=?;';
+
+  let parameters = [updatedDoll.name, updatedDoll.price, updatedDoll.owned, id];
+
+  try {
+    const result = await connection.executeWithParameters(sql, parameters);
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   getOneDoll,
   getAllDolls,
+  updateDoll,
 };

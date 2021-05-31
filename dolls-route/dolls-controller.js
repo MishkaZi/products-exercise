@@ -22,5 +22,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const updatedDoll = req.body;
+    const id = req.params.id;
+    const result = await dollsLogic.updateDoll(updatedDoll, id);
+    res.json(result);
+  } catch (error) {
+    return next(error);
+  }
+});
 
 module.exports = router;
