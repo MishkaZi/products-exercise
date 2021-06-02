@@ -3,6 +3,18 @@ const dollsLogic = require('./dolls-logic');
 
 const router = express.Router();
 
+
+
+
+router.get('/only-owned', async (req, res, next) => {
+  try {
+    const dolls = await dollsLogic.getOnlyOwned();
+    res.json(dolls);
+  } catch (error) {
+    return next(error);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -13,6 +25,9 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+
+
+
 router.get('/', async (req, res, next) => {
   try {
     const dolls = await dollsLogic.getAllDolls();
@@ -21,6 +36,7 @@ router.get('/', async (req, res, next) => {
     return next(error);
   }
 });
+
 
 router.put('/:id', async (req, res, next) => {
   try {

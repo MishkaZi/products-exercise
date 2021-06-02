@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 import DollCard from '../DollCard/DollCard';
 import { DollModel } from '../DollModel';
-import Axios from 'axios';
-
 import { useDispatch, useSelector } from 'react-redux';
 import './MainPage.css';
 import { RootStore } from '../../redux/store';
-import { getALLDolls } from '../../redux/actions';
+import { getALLDolls, getOwnedDolls } from '../../redux/actions';
 
 const MainPage = (): JSX.Element => {
   const dispatch = useDispatch();
 
-  const onlyPurshasedDolls = () => {};
+  // const onlyPurshasedDolls = () => {
+  //   const filteredDolls = dolls.filter((doll) => {
+  //     return doll.owned === 1;
+  //   });
+  //   return filteredDolls;
+  // }; 
 
   //Get dolls state from store
-  const dolls = useSelector((state: RootStore) => state.MainPage.dolls);
+  let dolls = useSelector((state: RootStore) => state.MainPage.dolls);
 
   useEffect(() => {
     dispatch(getALLDolls());
@@ -38,8 +41,11 @@ const MainPage = (): JSX.Element => {
         <label>Only purshased dolls:</label>
         <input
           onChange={(event) => {
-            onlyPurshasedDolls();
-            dispatch(getALLDolls());
+            if (event.target.checked === true) {
+              dispatch(getOwnedDolls());
+            } else {
+              dispatch(getALLDolls());
+            }
           }}
           type='checkbox'
           id='only-checked'

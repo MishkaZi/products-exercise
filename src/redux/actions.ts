@@ -4,11 +4,12 @@ import { Dispatch } from 'redux';
 
 export interface DollsAction {
   type: string;
-  payload: DollModel[];
+  payload?: DollModel[];
 }
 
 export const DollsActionType = {
   GET_ALL_DOLLS: 'GET_ALL_DOLLS',
+  GET_OWNED_DOLLS: 'GET_OWNED_DOLLS',
 };
 
 export const getALLDolls = () => async (dispatch: Dispatch<DollsAction>) => {
@@ -24,4 +25,17 @@ export const getALLDolls = () => async (dispatch: Dispatch<DollsAction>) => {
   }
 };
 
+export const getOwnedDolls = () => async (dispatch: Dispatch<DollsAction>) => {
+  try {
+    const ownedDolls = await Axios.get(
+      'http://localhost:3001/dolls/only-owned'
+    );
 
+    dispatch({
+      type: 'GET_OWNED_DOLLS',
+      payload: ownedDolls.data,
+    });
+  } catch (error) {
+    return new Error(error);
+  }
+};

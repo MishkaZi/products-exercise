@@ -16,6 +16,10 @@ const dollsReducer = (
       return {
         dolls: action.payload,
       };
+    case 'GET_OWNED_DOLLS':
+      return {
+        dolls: action.payload,
+      };
 
     default:
       return {};

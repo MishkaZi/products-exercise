@@ -22,6 +22,17 @@ const getAllDolls = async () => {
   }
 };
 
+const getOnlyOwned = async () => {
+  let sql = 'SELECT * FROM dolls WHERE owned=1;';
+
+  try {
+    const dollsDetails = await connection.executeWithParameters(sql);
+    return dollsDetails;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const updateDoll = async (updatedDoll, id) => {
   let sql = 'UPDATE dolls SET name=?, price=?, owned=? WHERE dolls.id=?;';
 
@@ -39,4 +50,5 @@ module.exports = {
   getOneDoll,
   getAllDolls,
   updateDoll,
+  getOnlyOwned
 };
