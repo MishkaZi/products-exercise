@@ -1,12 +1,4 @@
-.main-page > * {
-  border: 1px solid black;
-}
-
-.doll-card-list > div {
-  border: 1px solid black;
-}
-
-.main-page {
-  margin: auto;
-  width: 40%;
+.products-card-list{
+  display: flex;
+  flex-direction: row;
 }
